@@ -35,6 +35,7 @@ func (s *Sample) Shutdown(cp *kcl.CheckPointer, str string) error {
 func main() {
   var rp kcl.RecordProcessor
   rp = &Sample{}
-  err := kcl.Run(rp)
+  p := kcl.NewProcess(rp)
+  err := p.Run()
   fmt.Println(err)
 }

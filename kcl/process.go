@@ -27,6 +27,20 @@ type Process struct {
   Cp *CheckPointer
 }
 
+func (p *Process) Run() error {
+  for {
+    l := p.Ih.ReadLine()
+    if len(l) > 0 {
+      err := p.handleLine(l)
+      if  err != nil {
+        return err
+      }
+      } else {
+        return errors.New("No Input Error")
+      }
+    }
+  }
+
 func (p *Process) handleLine(l []byte) error {
   a := p.Ih.LoadAction(l)
   err := p.performAction(&a)
@@ -83,18 +97,8 @@ func (p *Process) reportDone(r string) {
   p.Ih.WriteAction(res)
 }
 
-func Run(rp RecordProcessor) error {
+func NewProcess(rp RecordProcessor) Process {
   ih := NewIOHandler()
   p := Process{rp, &ih, &CheckPointer{&ih}}
-  for {
-    l := p.Ih.ReadLine()
-    if len(l) > 0 {
-      err := p.handleLine(l)
-      if  err != nil {
-        return err
-      }
-    } else {
-        return errors.New("No Input Error")
-    }
-  }
+  return p
 }
