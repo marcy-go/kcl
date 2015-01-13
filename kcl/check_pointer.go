@@ -21,7 +21,7 @@ func (cp *CheckPointer) getAction() Action {
   var l []byte
   for a.IsEmpty() {
     l = cp.IOHandler.ReadLine()
-    a = cp.IOHandler.LoadAction(action)
+    a = cp.IOHandler.LoadAction(l)
   }
   return a
 }
@@ -29,11 +29,10 @@ func (cp *CheckPointer) getAction() Action {
 func (cp *CheckPointer) Run(seq string) error {
   res := Response{"checkpoint", seq}
   cp.IOHandler.WriteAction(res)
-  a = cp.getAction()
-  var s string
-  if a.Name != "checkpoint" {
+  a := cp.getAction()
+  if a.Type != "checkpoint" {
     return &CheckPointError{"Invalid Action"}
-  } else if a.IsError {
+  } else if a.IsError() {
     return &CheckPointError{a.Error}
   }
   return nil

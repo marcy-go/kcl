@@ -7,23 +7,14 @@ import (
 )
 
 type IOHandler struct {
-  In  bufio.Scanner
-  Out io.Writer
-  Err io.Writer
+  In  *bufio.Scanner
+  Out *bufio.Writer
+  Err *bufio.Writer
 }
 
-func (ih *IOHandler) New(in os.File, out os.File, err os.File) {
-  ih.In  = bufio.NewScanner(in)
-  ih.Out = bufio.NewWriter(out)
-  ih.Err = bufio.NewWriter(err)
+func NewIOHandler() IOHandler {
+  ih := IOHandler{bufio.NewScanner(os.Stdin), bufio.NewWriter(os.Stdout), bufio.NewWriter(os.Stderr)}
   return ih
-}
-
-func (ih *IOHandler) WriteLine(l []byte) {
-  ih.Out.WriteString("\n")
-  ih.Out.Write(l)
-  ih.Out.WriteString("\n")l
-  ih.Out.Flush()
 }
 
 func (ih *IOHandler) WriteLine(l []byte) {
@@ -41,9 +32,10 @@ func (ih *IOHandler) WriteError(l []byte) {
 
 func (ih *IOHandler) ReadLine() []byte {
   if ih.In.Scan() == false {
-    return byte[]
+    var b []byte
+    return b
   }
-  return s.Bytes()
+  return ih.In.Bytes()
 }
 
 func (ih *IOHandler) LoadAction(l []byte) Action {
@@ -53,5 +45,6 @@ func (ih *IOHandler) LoadAction(l []byte) Action {
 }
 
 func (ih *IOHandler) WriteAction(r Response) {
-  ih.WriteLine(json.Marshal(r))
+  b, _ := json.Marshal(r)
+  ih.WriteLine(b)
 }

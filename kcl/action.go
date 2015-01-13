@@ -16,7 +16,7 @@ type Action struct {
 
 func (a *Action) IsEmpty() bool {
   var s string
-  return a.Name == s && a.ShardId == s
+  return a.Type == s && a.ShardId == s
 }
 
 func (a *Action) IsError() bool {
