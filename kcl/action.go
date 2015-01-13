@@ -1,8 +1,16 @@
 package kcl
 
+type Record struct {
+  Data           string `json:"data"`
+  PartitionKey   string `json:"partitionKey"`
+  SequenceNumber string `json:"sequenceNumber"`
+}
+
 type Action struct {
-  Name    string `json:"action"`
+  Type    string `json:"action"`
   ShardId string `json:"shardId"`
+  Records []*Record `json:"records"`
+  Reason  string `json:"reason"`
   Error   string `json:"error"`
 }
 
