@@ -5,7 +5,7 @@ APP_ARCH="386 amd64"
 
 # Go1.2.1をダウンロードする
 pushd ~/
-curl -s -o go.tar.gz https://storage.googleapis.com/golang/go1.2.1.linux-amd64.tar.gz
+curl -s -o go.tar.gz https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
 tar xzf go.tar.gz
 export GOROOT=~/go
 export PATH=$GOROOT/bin:$PATH
