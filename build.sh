@@ -23,8 +23,11 @@ echo APP_VERSION is $APP_VERSION
 # 必要なライブラリを集める
 go get github.com/mitchellh/cli
 
+# リリース用ディレクトリ作成
+mkdir -p artifacts
+
 # クロスコンパイルする
-gox ./kclgo.go -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
+gox ./cmd/kclgo -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
 find artifacts
-gox ./kclsample.go -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
+gox ./cmd/kclsample -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
 find artifacts
