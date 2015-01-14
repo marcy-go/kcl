@@ -20,6 +20,9 @@ gox -build-toolchain -os="$APP_OS" -arch="$APP_ARCH"
 APP_VERSION=$(git log --pretty=format:"%h (%ad)" --date=short -1)
 echo APP_VERSION is $APP_VERSION
 
+# 必要なライブラリを集める
+go get github.com/mitchellh/cli
+
 # クロスコンパイルする
 gox -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
 find artifacts
