@@ -1,7 +1,8 @@
 package main
 
 import(
-  "./kcl"
+  "github.com/marcy-terui/kcl-go/kcl"
+//  "./kcl"
   "fmt"
   "os"
   "bufio"
