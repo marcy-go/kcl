@@ -24,5 +24,7 @@ echo APP_VERSION is $APP_VERSION
 go get github.com/mitchellh/cli
 
 # クロスコンパイルする
-gox -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
+gox ./kclgo.go -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
+find artifacts
+gox ./kclsample.go -os="$APP_OS" -arch="$APP_ARCH" -output="artifacts/{{.OS}}-{{.Arch}}/$APP_NAME" -ldflags "-X main.version '$APP_VERSION'"
 find artifacts
