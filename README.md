@@ -38,10 +38,10 @@ func main() {
 Note, the initial implementation of this library is largely based on the reference [Amazon Kinesis Client Library for Python](https://github.com/awslabs/amazon-kinesis-client-python) provided by Amazon.
 
 ## Usage
-1. Write and build your `RecordProcessor`.  
+#### 1. Write and build your `RecordProcessor`.  
 If your want to run a sample implementation, you get the sample binary from here:  
 https://drone.io/github.com/marcy-go/kclsample/files
-1. Write `properties` file like this:
+#### 2. Write `properties` file like this:  
 ```properties
 executableName          = /path/to/kclsample
 streamName              = kclsample
@@ -51,9 +51,9 @@ processingLanguage      = go/1.3.1
 initialPositionInStream = TRIM_HORIZON
 regionName              = ap-northeast-1
 ```
-1. Get `kclhelper` binary for your environment from here:  
+#### 3. Get `kclhelper` binary for your environment from here:  
 https://drone.io/github.com/marcy-go/kclhelper/files
-1. Exec `kclhelper` command.
+#### 4. Exec `kclhelper` command.
 ```sh
 # Get Jar files from Maven projects
 kclhelper setup
