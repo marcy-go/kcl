@@ -60,3 +60,19 @@ kclhelper setup
 # Run KCL
 kclhelper run -p <path-to-properties> [-j <path-to-java>]
 ```
+
+# Changelog
+
+See [CHANGELOG](https://github.com/marcy-go/kcl/blob/master/CHANGELOG.md)
+
+## Contributing
+
+1. Fork it ( https://github.com/marcy-go/kcl/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+# License
+
+[MIT License](https://github.com/marcy-go/kcl/blob/master/LICENSE.txt)
